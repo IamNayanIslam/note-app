@@ -1,6 +1,29 @@
+import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
-const EditNote = ({ toggleEditNoteModal }) => {
+const EditNote = ({
+  toggleEditNoteModal,
+  currentlyEditingNote,
+  notes,
+  setNotes,
+}) => {
+  const [editedNote, setEditedNote] = useState(currentlyEditingNote);
+
+  const handleNoteChange = (e) => {
+    setEditedNote({ ...editedNote, [e.target.name]: e.target.value });
+  };
+
+  const handleNoteUpdate = (e) => {
+    e.preventDefault();
+
+    const updatedNotes = notes.map((note) =>
+      note.id === editedNote.id ? editedNote : note
+    );
+
+    setNotes(updatedNotes);
+    toggleEditNoteModal();
+  };
+
   return (
     <div>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/75 p-4 sm:p-6 backdrop-blur-sm">
@@ -22,8 +45,10 @@ const EditNote = ({ toggleEditNoteModal }) => {
             <input
               type="text"
               name="title"
-              max={20}
+              maxLength={30}
               placeholder="Enter your note title."
+              value={editedNote.title}
+              onChange={handleNoteChange}
               className="border border-gray-200 p-2 rounded-md outline-none focus:outline-none focus:ring-1 focus:ring-teal-500"
             />
           </div>
@@ -33,13 +58,18 @@ const EditNote = ({ toggleEditNoteModal }) => {
             </label>
             <input
               type="text"
-              name="title"
-              max={100}
+              name="description"
+              maxLength={100}
               placeholder="Enter your note Description."
+              value={editedNote.description}
+              onChange={handleNoteChange}
               className="border border-gray-200 p-2 rounded-md outline-none focus:outline-none focus:ring-1 focus:ring-teal-500"
             />
           </div>
-          <button className="bg-teal-500 hover:bg-teal-600 transition duration-300 w-full p-2 rounded-xl text-white font-bold cursor-pointer">
+          <button
+            onClick={handleNoteUpdate}
+            className="bg-teal-500 hover:bg-teal-600 transition duration-300 w-full p-2 rounded-xl text-white font-bold cursor-pointer"
+          >
             Update Note
           </button>
         </form>

@@ -1,7 +1,7 @@
 import { RiEditBoxLine } from "react-icons/ri";
 import { RxCrossCircled } from "react-icons/rx";
 
-const Note = ({ note, toggleEditNoteModal, handleDeleteNote }) => {
+const Note = ({ note, startNoteEditing, handleDeleteNote }) => {
   return (
     <div className="w-full md:w-[250px]">
       <div className="bg-teal-600 px-2 font-bold text-gray-900">
@@ -16,7 +16,7 @@ const Note = ({ note, toggleEditNoteModal, handleDeleteNote }) => {
         </div>
         <div className="flex gap-1 items-center">
           <RiEditBoxLine
-            onClick={toggleEditNoteModal}
+            onClick={() => startNoteEditing(note.id)}
             className="cursor-pointer hover:font-bold transition duration-300"
           />
           <RxCrossCircled

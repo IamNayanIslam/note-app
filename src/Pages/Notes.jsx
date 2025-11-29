@@ -36,6 +36,7 @@ const Notes = () => {
   const [addNoteModal, setAddNoteModal] = useState(false);
   const [editNoteModal, setEditNoteModal] = useState(false);
   const [notes, setNotes] = useState(initial_notes);
+  const [currentlyEditingNote, setCurrentlyEditingNote] = useState({});
 
   const toggleAddNoteModal = () => {
     setAddNoteModal(!addNoteModal);
@@ -43,6 +44,12 @@ const Notes = () => {
 
   const toggleEditNoteModal = () => {
     setEditNoteModal(!editNoteModal);
+  };
+
+  const startNoteEditing = (id) => {
+    const findNote = notes.find((note) => note.id === id);
+    setCurrentlyEditingNote(findNote);
+    toggleEditNoteModal();
   };
 
   const handleDeleteNote = (id) => {
@@ -58,7 +65,7 @@ const Notes = () => {
           <Note
             key={note.id}
             note={note}
-            toggleEditNoteModal={toggleEditNoteModal}
+            startNoteEditing={startNoteEditing}
             handleDeleteNote={handleDeleteNote}
           />
         ))}
@@ -70,7 +77,14 @@ const Notes = () => {
           setNotes={setNotes}
         />
       )}
-      {editNoteModal && <EditNote toggleEditNoteModal={toggleEditNoteModal} />}
+      {editNoteModal && (
+        <EditNote
+          toggleEditNoteModal={toggleEditNoteModal}
+          currentlyEditingNote={currentlyEditingNote}
+          notes={notes}
+          setNotes={setNotes}
+        />
+      )}
     </div>
   );
 };
