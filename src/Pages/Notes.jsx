@@ -61,7 +61,7 @@ const Notes = () => {
       <Header />
       <ActionMenu toggleAddNoteModal={toggleAddNoteModal} />
       <div className="flex flex-col md:flex-row items-center md:items-start gap-4 px-8 py-8">
-        {notes.map((note) => (
+        {[...notes].reverse().map((note) => (
           <Note
             key={note.id}
             note={note}
