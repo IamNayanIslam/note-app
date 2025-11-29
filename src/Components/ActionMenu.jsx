@@ -3,19 +3,28 @@ import { FaFilter } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { IoIosColorPalette } from "react-icons/io";
 
-const ActionMenu = ({ toggleAddNoteModal }) => {
+const ActionMenu = ({ toggleAddNoteModal, searchQuery, setSearchQuery }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault(); // prevent page reload
+  };
+
   return (
     <div className="flex flex-col md:flex-row justify-between w-full p-4 md:px-8 md:py-4 bg-white shadow-lg rounded-xl">
-      <form className="w-full md:w-2/5 mb-4 md:mb-0">
+      <form className="w-full md:w-2/5 mb-4 md:mb-0" onSubmit={handleSubmit}>
         <div className="border-2 border-teal-500 rounded-full flex items-center justify-between shadow-md focus-within:ring-2 focus-within:ring-teal-300 transition duration-300">
           <input
             type="text"
             placeholder="Search your note here."
-            max={20}
+            maxLength={30}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             required
             className="flex-1 px-4 py-2 bg-transparent rounded-full focus:outline-none placeholder-gray-500"
           />
-          <button className="bg-teal-500 p-3 rounded-full text-white transition duration-300 hover:bg-teal-600 active:scale-95 m-1">
+          <button
+            className="bg-teal-500 p-3 rounded-full text-white transition duration-300 hover:bg-teal-600 active:scale-95 m-1"
+            type="submit"
+          >
             <FaSearch className="h-5 w-5" />
           </button>
         </div>

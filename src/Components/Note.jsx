@@ -4,7 +4,7 @@ import { RxCrossCircled } from "react-icons/rx";
 const Note = ({ note, startNoteEditing, handleDeleteNote }) => {
   return (
     <div className="w-full md:w-[250px]">
-      <div className="bg-teal-600 px-2 font-bold text-gray-900">
+      <div className="bg-teal-500 px-2 font-bold text-gray-900">
         <h2>{note.title}</h2>
       </div>
       <div className="bg-teal-100 p-2">

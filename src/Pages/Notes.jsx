@@ -37,6 +37,7 @@ const Notes = () => {
   const [editNoteModal, setEditNoteModal] = useState(false);
   const [notes, setNotes] = useState(initial_notes);
   const [currentlyEditingNote, setCurrentlyEditingNote] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
 
   const toggleAddNoteModal = () => {
     setAddNoteModal(!addNoteModal);
@@ -56,12 +57,25 @@ const Notes = () => {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
+  const filteredNotes = [...notes].reverse().filter((note) => {
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.toLowerCase();
+    return (
+      note.title.toLowerCase().includes(q) ||
+      note.description.toLowerCase().includes(q)
+    );
+  });
+
   return (
     <div>
       <Header />
-      <ActionMenu toggleAddNoteModal={toggleAddNoteModal} />
+      <ActionMenu
+        toggleAddNoteModal={toggleAddNoteModal}
+        setSearchQuery={setSearchQuery}
+        searchQuery={searchQuery}
+      />
       <div className="flex flex-col md:flex-row items-center md:items-start gap-4 px-8 py-8">
-        {[...notes].reverse().map((note) => (
+        {filteredNotes.map((note) => (
           <Note
             key={note.id}
             note={note}
