@@ -6,7 +6,7 @@ import { IoIosColorPalette } from "react-icons/io";
 const ActionMenu = ({ toggleAddNoteModal }) => {
   return (
     <div className="flex flex-col md:flex-row justify-between w-full p-4 md:px-8 md:py-4 bg-white shadow-lg rounded-xl">
-      <form className="w-full md:w-1/3 mb-4 md:mb-0">
+      <form className="w-full md:w-2/5 mb-4 md:mb-0">
         <div className="border-2 border-teal-500 rounded-full flex items-center justify-between shadow-md focus-within:ring-2 focus-within:ring-teal-300 transition duration-300">
           <input
             type="text"
