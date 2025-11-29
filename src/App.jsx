@@ -1,10 +1,12 @@
+import AddNote from "./Components/AddNote";
 import Notes from "./Pages/Notes";
 
 function App() {
   return (
     <>
       <div>
-        <Notes />
+        {/* <Notes /> */}
+        <AddNote />
       </div>
     </>
   );
