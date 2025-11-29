@@ -1,0 +1,35 @@
+import { LuNotebookText } from "react-icons/lu";
+import { FiLogIn } from "react-icons/fi";
+import { LuLogOut } from "react-icons/lu";
+import { WiMoonAltThirdQuarter } from "react-icons/wi";
+import { useState } from "react";
+
+const Header = () => {
+  const [isLogedIn, setIsLogedIn] = useState(false);
+  return (
+    <div className="flex justify-between px-4 py-2  md:px-8 md:py-4 bg-teal-100">
+      <div className="flex  items-center text-2xl font-bold text-teal-500 cursor-pointer hover:text-teal-600 transition duration-300">
+        <LuNotebookText />
+        <h1>Your Notes</h1>
+      </div>
+      <div>
+        <ul className="flex gap-2">
+          {!isLogedIn ? (
+            <li className="flex items-center gap-1 bg-teal-500 p-2 rounded-full text-white cursor-pointer hover:bg-teal-600 transition duration-300">
+              <FiLogIn /> Log In
+            </li>
+          ) : (
+            <li className="flex items-center gap-1 bg-teal-500 p-2 rounded-full text-white cursor-pointer hover:bg-teal-600 transition duration-300">
+              <LuLogOut /> Log Out
+            </li>
+          )}
+          <li className="flex items-center gap-1 bg-teal-500 p-2 px-3 rounded-full text-white text-xl cursor-pointer hover:bg-teal-600 transition duration-300">
+            <WiMoonAltThirdQuarter />
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default Header;
