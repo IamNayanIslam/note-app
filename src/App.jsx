@@ -1,10 +1,11 @@
+import ActionMenu from "./Components/ActionMenu";
 import Note from "./Components/Note";
 
 function App() {
   return (
     <>
       <div>
-        <Note />
+        <ActionMenu />
       </div>
     </>
   );
