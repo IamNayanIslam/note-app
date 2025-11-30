@@ -14,7 +14,7 @@ const Note = ({ note, startNoteEditing, handleDeleteNote }) => {
         <div>
           <p>Created: 10:30 AM</p>
         </div>
-        <div className="flex gap-1 items-center">
+        <div className="flex gap-1 items-center text-xl">
           <RiEditBoxLine
             onClick={() => startNoteEditing(note.id)}
             className="cursor-pointer hover:font-bold transition duration-300"
