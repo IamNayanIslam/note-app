@@ -7,7 +7,7 @@ export default {
   safelist: [
     {
       pattern:
-        /(bg|border|ring)-(violet|teal|indigo|emerald|rose)-(100|200|300|500)/,
+        /(bg|border|ring|text)-(violet|teal|indigo|emerald|rose)-(100|200|300|500)/,
       variants: ["focus-within", "focus"],
     },
     {

@@ -28,7 +28,10 @@ const EditNote = ({
 
   return (
     <div>
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/75 p-4 sm:p-6 backdrop-blur-sm">
+      <div
+        onClick={toggleEditNoteModal}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/75 p-4 sm:p-6 backdrop-blur-sm"
+      >
         <form
           className={`w-full md:w-[400px] border-2 border-${state.currentTheme}-500 rounded-xl px-4 py-2 bg-white`}
         >

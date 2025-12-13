@@ -27,7 +27,7 @@ const ActionMenu = ({ toggleAddNoteModal, searchQuery, setSearchQuery }) => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row justify-between w-full p-4 md:px-8 md:py-4 bg-white shadow-lg rounded-xl">
+      <div className="flex flex-col md:flex-row justify-center gap-4 w-full p-4 md:px-8 md:py-4 bg-white shadow-lg rounded-xl">
         <form className="w-full md:w-2/5 mb-4 md:mb-0" onSubmit={handleSubmit}>
           <div
             className={`
