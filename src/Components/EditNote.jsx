@@ -26,6 +26,10 @@ const EditNote = ({
     toggleEditNoteModal();
   };
 
+  const handleFormClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
     <div>
       <div
@@ -33,6 +37,7 @@ const EditNote = ({
         className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/75 p-4 sm:p-6 backdrop-blur-sm"
       >
         <form
+          onClick={handleFormClick}
           className={`w-full md:w-[400px] border-2 border-${state.currentTheme}-500 rounded-xl px-4 py-2 bg-white`}
         >
           <div className="flex items-center justify-between mb-2">
