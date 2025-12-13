@@ -2,12 +2,16 @@ import { LuNotebookText } from "react-icons/lu";
 import { FiLogIn } from "react-icons/fi";
 import { LuLogOut } from "react-icons/lu";
 import { WiMoonAltThirdQuarter } from "react-icons/wi";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ThemesContext } from "../Contexts/ThemesContext";
 
 const Header = () => {
   const [isLogedIn, setIsLogedIn] = useState(false);
+  const { state } = useContext(ThemesContext);
   return (
-    <div className="flex justify-between px-4 py-2  md:px-8 md:py-4 bg-teal-100">
+    <div
+      className={`flex justify-between px-4 py-2  md:px-8 md:py-4 bg-${state.currentTheme}-100`}
+    >
       <div className="flex  items-center text-2xl font-bold text-teal-500 cursor-pointer hover:text-teal-600 transition duration-300">
         <LuNotebookText />
         <h1>Your Notes</h1>
