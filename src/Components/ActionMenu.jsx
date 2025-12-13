@@ -9,7 +9,7 @@ const ActionMenu = ({ toggleAddNoteModal, searchQuery, setSearchQuery }) => {
   const { state, dispatch } = useContext(ThemesContext);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // prevent page reload
+    e.preventDefault();
   };
 
   const initiateThemeChange = () => {
@@ -21,20 +21,16 @@ const ActionMenu = ({ toggleAddNoteModal, searchQuery, setSearchQuery }) => {
     dispatch({ type: "SET_IS_OPEN" });
   };
 
-  useEffect(() => {
-    console.log(state);
-  });
-
   return (
     <>
-      <div className="flex flex-col md:flex-row justify-center gap-4 w-full p-4 md:px-8 md:py-4 bg-white shadow-lg rounded-xl">
+      <div className="flex flex-col md:flex-row justify-center md:gap-4 w-full p-4 md:px-8 md:py-4 bg-white shadow-lg rounded-xl">
         <form className="w-full md:w-2/5 mb-4 md:mb-0" onSubmit={handleSubmit}>
           <div
             className={`
-    border-2 rounded-full flex items-center justify-between shadow-md focus-within:ring-2 transition duration-300
-    border-${state.currentTheme}-500 
-    focus-within:ring-${state.currentTheme}-300
-  `}
+              border-2 rounded-full flex items-center justify-between shadow-md focus-within:ring-2 transition duration-300
+              border-${state.currentTheme}-500 
+              focus-within:ring-${state.currentTheme}-300
+            `}
           >
             <input
               type="text"
@@ -53,6 +49,7 @@ const ActionMenu = ({ toggleAddNoteModal, searchQuery, setSearchQuery }) => {
             </button>
           </div>
         </form>
+
         <div className="flex items-center justify-center gap-2">
           <button
             className={`bg-${state.currentTheme}-500 p-3 rounded-full text-white shadow-md hover:bg-${state.currentTheme}-600 transition duration-300 active:scale-95 cursor-pointer`}
@@ -64,40 +61,53 @@ const ActionMenu = ({ toggleAddNoteModal, searchQuery, setSearchQuery }) => {
           >
             <RiAddBoxLine className="h-5 w-5" onClick={toggleAddNoteModal} />
           </button>
-          <button
-            className={`bg-${state.currentTheme}-500 p-3 rounded-full text-white shadow-md hover:bg-${state.currentTheme}-600 transition duration-300 active:scale-95 cursor-pointer`}
-            onClick={initiateThemeChange}
-          >
-            <IoIosColorPalette className="h-5 w-5" />
-          </button>
+
+          <div className="relative">
+            <button
+              className={`bg-${state.currentTheme}-500 p-3 rounded-full text-white shadow-md hover:bg-${state.currentTheme}-600 transition duration-300 active:scale-95 cursor-pointer`}
+              onClick={initiateThemeChange}
+            >
+              <IoIosColorPalette className="h-5 w-5" />
+            </button>
+
+            <div
+              className={`
+                absolute top-full right-0 mt-2 z-10 
+                p-2 bg-white rounded-lg shadow-xl 
+                border border-gray-200 transform transition-all duration-300 origin-top
+                ${
+                  state.isOpen
+                    ? "scale-y-100 opacity-100"
+                    : "scale-y-0 opacity-0 pointer-events-none"
+                }
+              `}
+            >
+              <ul className="flex gap-2">
+                <li
+                  className="w-6 h-6 rounded-full bg-teal-500 cursor-pointer border-2 border-transparent hover:border-teal-700"
+                  onClick={() => handleThemeChange("teal")}
+                ></li>
+                <li
+                  onClick={() => handleThemeChange("violet")}
+                  className="w-6 h-6 rounded-full bg-violet-500 cursor-pointer border-2 border-transparent hover:border-violet-700"
+                ></li>
+                <li
+                  onClick={() => handleThemeChange("indigo")}
+                  className="w-6 h-6 rounded-full bg-indigo-500 cursor-pointer border-2 border-transparent hover:border-indigo-700"
+                ></li>
+                <li
+                  onClick={() => handleThemeChange("emerald")}
+                  className="w-6 h-6 rounded-full bg-emerald-500 cursor-pointer border-2 border-transparent hover:border-emerald-700"
+                ></li>
+                <li
+                  onClick={() => handleThemeChange("rose")}
+                  className="w-6 h-6 rounded-full bg-rose-500 cursor-pointer border-2 border-transparent hover:border-rose-700"
+                ></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-      {state.isOpen && (
-        <div className="min-h-[40px] p-2 md:px-8 md:py-2 flex justify-end bg-transparent">
-          <ul className="flex gap-2">
-            <li
-              className="w-[24px] h-[24px] rounded-full bg-teal-500 p-5"
-              onClick={() => handleThemeChange("teal")}
-            ></li>
-            <li
-              onClick={() => handleThemeChange("violet")}
-              className="w-[24px] h-[24px] rounded-full bg-violet-500 p-5"
-            ></li>
-            <li
-              onClick={() => handleThemeChange("indigo")}
-              className="w-[24px] h-[24px] rounded-full bg-indigo-500 p-5"
-            ></li>
-            <li
-              onClick={() => handleThemeChange("emerald")}
-              className="w-[24px] h-[24px] rounded-full bg-emerald-500 p-5"
-            ></li>
-            <li
-              onClick={() => handleThemeChange("rose")}
-              className="w-[24px] h-[24px] rounded-full bg-rose-500 p-5"
-            ></li>
-          </ul>
-        </div>
-      )}
     </>
   );
 };
