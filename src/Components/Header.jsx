@@ -12,22 +12,30 @@ const Header = () => {
     <div
       className={`flex justify-between px-4 py-2  md:px-8 md:py-4 bg-${state.currentTheme}-100`}
     >
-      <div className="flex  items-center text-2xl font-bold text-teal-500 cursor-pointer hover:text-teal-600 transition duration-300">
+      <div
+        className={`flex items-center text-2xl font-bold cursor-pointer text-${state.currentTheme}-500 transition duration-300 hover:text-${state.currentTheme}-600`}
+      >
         <LuNotebookText />
         <h1>Your Notes</h1>
       </div>
       <div>
         <ul className="flex gap-2">
           {!isLogedIn ? (
-            <li className="flex items-center gap-1 bg-teal-500 p-2 rounded-full text-white cursor-pointer hover:bg-teal-600 transition duration-300">
+            <li
+              className={`flex items-center gap-1 bg-${state.currentTheme}-500 p-2 rounded-full text-white cursor-pointer hover:bg-${state.currentTheme}-600 transition duration-300`}
+            >
               <FiLogIn /> Log In
             </li>
           ) : (
-            <li className="flex items-center gap-1 bg-teal-500 p-2 rounded-full text-white cursor-pointer hover:bg-teal-600 transition duration-300">
+            <li
+              className={`flex items-center gap-1 bg-${state.currentTheme}-500 p-2 rounded-full text-white cursor-pointer hover:bg-${state.currentTheme}-600 transition duration-300`}
+            >
               <LuLogOut /> Log Out
             </li>
           )}
-          <li className="flex items-center gap-1 bg-teal-500 p-2 px-3 rounded-full text-white text-xl cursor-pointer hover:bg-teal-600 transition duration-300">
+          <li
+            className={`flex items-center gap-1 bg-${state.currentTheme}-500 p-2 px-3 rounded-full text-white text-xl cursor-pointer hover:bg-${state.currentTheme}-600 transition duration-300`}
+          >
             <WiMoonAltThirdQuarter />
           </li>
         </ul>

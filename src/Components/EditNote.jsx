@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+import { ThemesContext } from "../Contexts/ThemesContext";
 
 const EditNote = ({
   toggleEditNoteModal,
@@ -7,6 +8,7 @@ const EditNote = ({
   notes,
   setNotes,
 }) => {
+  const { state } = useContext(ThemesContext);
   const [editedNote, setEditedNote] = useState(currentlyEditingNote);
 
   const handleNoteChange = (e) => {
@@ -27,12 +29,14 @@ const EditNote = ({
   return (
     <div>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/75 p-4 sm:p-6 backdrop-blur-sm">
-        <form className="w-full md:w-[400px] border-2 border-teal-500 rounded-xl px-4 py-2 bg-white">
+        <form
+          className={`w-full md:w-[400px] border-2 border-${state.currentTheme}-500 rounded-xl px-4 py-2 bg-white`}
+        >
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl font-bold">Edit Your Note</h2>
             <span
               onClick={toggleEditNoteModal}
-              className="bg-teal-500 hover:bg-teal-600 transition duration-300 p-2 rounded-full text-white cursor-pointer"
+              className={`bg-${state.currentTheme}-500 hover:bg-${state.currentTheme}-600 transition duration-300 p-2 rounded-full text-white cursor-pointer`}
             >
               <IoCloseSharp />
             </span>
@@ -49,7 +53,7 @@ const EditNote = ({
               placeholder="Enter your note title."
               value={editedNote.title}
               onChange={handleNoteChange}
-              className="border border-gray-200 p-2 rounded-md outline-none focus:outline-none focus:ring-1 focus:ring-teal-500"
+              className={`border border-gray-200 p-2 rounded-md outline-none focus:outline-none focus:ring-1 focus:ring-${state.currentTheme}-500`}
             />
           </div>
           <div className="flex flex-col gap-2 justify-center my-3">
@@ -63,12 +67,12 @@ const EditNote = ({
               placeholder="Enter your note Description."
               value={editedNote.description}
               onChange={handleNoteChange}
-              className="border border-gray-200 p-2 rounded-md outline-none focus:outline-none focus:ring-1 focus:ring-teal-500"
+              className={`border border-gray-200 p-2 rounded-md outline-none focus:outline-none focus:ring-1 focus:ring-${state.currentTheme}-500`}
             />
           </div>
           <button
             onClick={handleNoteUpdate}
-            className="bg-teal-500 hover:bg-teal-600 transition duration-300 w-full p-2 rounded-xl text-white font-bold cursor-pointer"
+            className={`bg-${state.currentTheme}-500 hover:bg-${state.currentTheme}-600 transition duration-300 w-full p-2 rounded-xl text-white font-bold cursor-pointer`}
           >
             Update Note
           </button>

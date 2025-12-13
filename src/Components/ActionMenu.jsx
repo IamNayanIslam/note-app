@@ -46,7 +46,7 @@ const ActionMenu = ({ toggleAddNoteModal, searchQuery, setSearchQuery }) => {
               className="flex-1 px-4 py-2 bg-transparent rounded-full focus:outline-none placeholder-gray-500"
             />
             <button
-              className="bg-teal-500 p-3 rounded-full text-white transition duration-300 hover:bg-teal-600 active:scale-95 m-1"
+              className={`bg-${state.currentTheme}-500 p-3 rounded-full text-white transition duration-300 hover:bg-${state.currentTheme}-600 active:scale-95 m-1`}
               type="submit"
             >
               <FaSearch className="h-5 w-5" />
@@ -54,14 +54,18 @@ const ActionMenu = ({ toggleAddNoteModal, searchQuery, setSearchQuery }) => {
           </div>
         </form>
         <div className="flex items-center justify-center gap-2">
-          <button className="bg-teal-500 p-3 rounded-full text-white shadow-md hover:bg-teal-600 transition duration-300 active:scale-95 cursor-pointer">
+          <button
+            className={`bg-${state.currentTheme}-500 p-3 rounded-full text-white shadow-md hover:bg-${state.currentTheme}-600 transition duration-300 active:scale-95 cursor-pointer`}
+          >
             <FaFilter className="h-5 w-5" />
           </button>
-          <button className="bg-teal-500 p-3 rounded-full text-white shadow-md hover:bg-teal-600 transition duration-300 active:scale-95 cursor-pointer">
+          <button
+            className={`bg-${state.currentTheme}-500 p-3 rounded-full text-white shadow-md hover:bg-${state.currentTheme}-600 transition duration-300 active:scale-95 cursor-pointer`}
+          >
             <RiAddBoxLine className="h-5 w-5" onClick={toggleAddNoteModal} />
           </button>
           <button
-            className="bg-teal-500 p-3 rounded-full text-white shadow-md hover:bg-teal-600 transition duration-300 active:scale-95 cursor-pointer"
+            className={`bg-${state.currentTheme}-500 p-3 rounded-full text-white shadow-md hover:bg-${state.currentTheme}-600 transition duration-300 active:scale-95 cursor-pointer`}
             onClick={initiateThemeChange}
           >
             <IoIosColorPalette className="h-5 w-5" />
@@ -76,15 +80,21 @@ const ActionMenu = ({ toggleAddNoteModal, searchQuery, setSearchQuery }) => {
               onClick={() => handleThemeChange("teal")}
             ></li>
             <li
-              onClick={() => handleThemeChange("lime")}
-              className="w-[24px] h-[24px] rounded-full bg-lime-500 p-5"
+              onClick={() => handleThemeChange("violet")}
+              className="w-[24px] h-[24px] rounded-full bg-violet-500 p-5"
             ></li>
             <li
               onClick={() => handleThemeChange("indigo")}
               className="w-[24px] h-[24px] rounded-full bg-indigo-500 p-5"
             ></li>
-            <li className="w-[24px] h-[24px] rounded-full bg-red-500 p-5"></li>
-            <li className="w-[24px] h-[24px] rounded-full bg-red-500 p-5"></li>
+            <li
+              onClick={() => handleThemeChange("emerald")}
+              className="w-[24px] h-[24px] rounded-full bg-emerald-500 p-5"
+            ></li>
+            <li
+              onClick={() => handleThemeChange("rose")}
+              className="w-[24px] h-[24px] rounded-full bg-rose-500 p-5"
+            ></li>
           </ul>
         </div>
       )}

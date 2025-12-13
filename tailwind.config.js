@@ -6,16 +6,18 @@ export default {
   },
   safelist: [
     {
-      // ----------------------------------------------------
-      // CORRECTED: Added '100' to the shade list
-      // ----------------------------------------------------
-      pattern: /(bg|border|ring)-(lime|teal|indigo)-(100|200|300|500)/,
-      variants: ["focus-within"],
+      pattern:
+        /(bg|border|ring)-(violet|teal|indigo|emerald|rose)-(100|200|300|500)/,
+      variants: ["focus-within", "focus"],
     },
     {
-      // The focus-within pattern can remain as is, assuming you only use shade 300 for rings
-      pattern: /focus-within:ring-(lime|teal|indigo)-(300)/,
+      pattern: /focus-within:ring-(violet|teal|indigo|emerald|rose)-(300|500)/,
       variants: ["focus-within"],
+    },
+
+    {
+      pattern: /focus:ring-(violet|teal|indigo|emerald|rose)-(300|500)/,
+      variants: ["focus"],
     },
   ],
   plugins: [],
