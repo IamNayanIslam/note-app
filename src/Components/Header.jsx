@@ -2,11 +2,11 @@ import { LuNotebookText } from "react-icons/lu";
 import { FiLogIn } from "react-icons/fi";
 import { LuLogOut } from "react-icons/lu";
 import { WiMoonAltThirdQuarter } from "react-icons/wi";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemesContext } from "../Contexts/ThemesContext";
 
 const Header = () => {
-  // const [isLogedIn, setIsLogedIn] = useState(false);
+  const [isLogedIn, setIsLogedIn] = useState(false);
   const { themesState } = useContext(ThemesContext);
   return (
     <div
@@ -20,17 +20,19 @@ const Header = () => {
       </div>
       <div>
         <ul className="flex gap-2">
-          <li
-            className={`flex items-center gap-1 bg-${themesState.currentTheme}-500 p-2 rounded-full text-white cursor-pointer hover:bg-${themesState.currentTheme}-600 transition duration-300`}
-          >
-            <FiLogIn /> Log In
-          </li>
-
-          <li
-            className={`flex items-center gap-1 bg-${themesState.currentTheme}-500 p-2 rounded-full text-white cursor-pointer hover:bg-${themesState.currentTheme}-600 transition duration-300`}
-          >
-            <LuLogOut /> Log Out
-          </li>
+          {!isLogedIn ? (
+            <li
+              className={`flex items-center gap-1 bg-${themesState.currentTheme}-500 p-2 rounded-full text-white cursor-pointer hover:bg-${themesState.currentTheme}-600 transition duration-300`}
+            >
+              <FiLogIn /> Log In
+            </li>
+          ) : (
+            <li
+              className={`flex items-center gap-1 bg-${themesState.currentTheme}-500 p-2 rounded-full text-white cursor-pointer hover:bg-${themesState.currentTheme}-600 transition duration-300`}
+            >
+              <LuLogOut /> Log Out
+            </li>
+          )}
 
           <li
             className={`flex items-center gap-1 bg-${themesState.currentTheme}-500 p-2 px-3 rounded-full text-white text-xl cursor-pointer hover:bg-${themesState.currentTheme}-600 transition duration-300`}
