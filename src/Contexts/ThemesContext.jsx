@@ -1,7 +1,10 @@
 import { createContext, useEffect, useReducer } from "react";
 import { ThemesReducer } from "../Reducers/ThemesReducer";
 
-export const ThemesContext = createContext({ state: {}, dispatch: () => {} });
+export const ThemesContext = createContext({
+  themesState: {},
+  dispatch: () => {},
+});
 
 const INITIAL_THEME = {
   currentTheme: "teal",
@@ -9,15 +12,15 @@ const INITIAL_THEME = {
 };
 
 export const ThemesContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(
+  const [themesState, dispatch] = useReducer(
     ThemesReducer,
-    JSON.parse(localStorage.getItem("state")) || INITIAL_THEME
+    JSON.parse(localStorage.getItem("themesState")) || INITIAL_THEME
   );
 
   useEffect(() => {
-    localStorage.setItem("state", JSON.stringify(state));
+    localStorage.setItem("themesState", JSON.stringify(themesState));
   });
-  const values = { state, dispatch };
+  const values = { themesState, dispatch };
 
   return (
     <ThemesContext.Provider value={values}>{children}</ThemesContext.Provider>

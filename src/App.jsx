@@ -1,12 +1,16 @@
-import AddNote from "./Components/AddNote";
+import { useContext } from "react";
 import Notes from "./Pages/Notes";
+import { ThemesContext } from "./Contexts/ThemesContext";
 
 function App() {
+  const { themesState, dispatch } = useContext(ThemesContext);
+  const closeThemePalate = () => {
+    dispatch({ type: "SET_IS_OPEN_CLOSE" });
+  };
   return (
     <>
-      <div>
+      <div onClick={closeThemePalate}>
         <Notes />
-        {/* <AddNote /> */}
       </div>
     </>
   );

@@ -7,5 +7,7 @@ export const ThemesReducer = (
       return { ...state, currentTheme: payload };
     case "SET_IS_OPEN":
       return { ...state, isOpen: !state.isOpen };
+    case "SET_IS_OPEN_CLOSE":
+      return { ...state, isOpen: false };
   }
 };

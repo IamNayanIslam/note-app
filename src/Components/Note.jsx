@@ -4,19 +4,19 @@ import { RxCrossCircled } from "react-icons/rx";
 import { ThemesContext } from "../Contexts/ThemesContext";
 
 const Note = ({ note, startNoteEditing, handleDeleteNote }) => {
-  const { state } = useContext(ThemesContext);
+  const { themesState } = useContext(ThemesContext);
   return (
     <div className="w-full md:w-[250px]">
       <div
-        className={`bg-${state.currentTheme}-500 px-2 font-bold text-gray-900`}
+        className={`bg-${themesState.currentTheme}-500 px-2 font-bold text-gray-900`}
       >
         <h2>{note.title}</h2>
       </div>
-      <div className={`bg-${state.currentTheme}-100 p-2`}>
+      <div className={`bg-${themesState.currentTheme}-100 p-2`}>
         <p className="text-justify text-gray-900">{note.description}</p>
       </div>
       <div
-        className={`flex justify-between items-center px-2 py-1 bg-${state.currentTheme}-100`}
+        className={`flex justify-between items-center px-2 py-1 bg-${themesState.currentTheme}-100`}
       >
         <div>
           <p>Created: 10:30 AM</p>
