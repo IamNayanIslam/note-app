@@ -4,13 +4,22 @@ import { RxCrossCircled } from "react-icons/rx";
 import { ThemesContext } from "../Contexts/ThemesContext";
 import { NotesContext } from "../Contexts/NotesContext";
 
-const Note = ({ note, startNoteEditing }) => {
+const Note = ({ note }) => {
   const { themesState } = useContext(ThemesContext);
   const { notesState, dispatch } = useContext(NotesContext);
 
   const handleDeleteNote = (id) => {
     dispatch({ type: "DELETE_NOTE", payload: id });
   };
+
+  const toggleEditNoteModal = (note) => {
+    dispatch({ type: "TOGGLE_EDIT_NOTE_MODAL" });
+    dispatch({ type: "SET_NOTE_TITLE_VALUE", payload: note.title });
+    dispatch({ type: "SET_NOTE_DESCRIPTION_VALUE", payload: note.description });
+    dispatch({ type: "SET_NOTE_TO_BE_UPDATED_ID", payload: note.id });
+    // dispatch({ type: "SET_IS_UPDATING", payload: note.id });
+  };
+
   return (
     <div className="w-full md:w-[250px]">
       <div
@@ -29,7 +38,7 @@ const Note = ({ note, startNoteEditing }) => {
         </div>
         <div className="flex gap-1 items-center text-2xl">
           <RiEditBoxLine
-            onClick={() => startNoteEditing(note.id)}
+            onClick={() => toggleEditNoteModal(note)}
             className="cursor-pointer hover:font-bold transition duration-300"
           />
           <RxCrossCircled

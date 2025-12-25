@@ -20,7 +20,7 @@ const Notes = () => {
       </div>
 
       {notesState.toggleAddNoteModal && <AddNote />}
-      {/* <EditNote /> */}
+      {notesState.toggleEditNoteModal && <EditNote />}
     </div>
   );
 };

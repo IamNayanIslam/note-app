@@ -1,28 +1,30 @@
 import { useContext, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { ThemesContext } from "../Contexts/ThemesContext";
+import { NotesContext } from "../Contexts/NotesContext";
 
-const EditNote = ({
-  toggleEditNoteModal,
-  currentlyEditingNote,
-  notes,
-  setNotes,
-}) => {
+const EditNote = ({ currentlyEditingNote, notes, setNotes }) => {
   const { themesState } = useContext(ThemesContext);
+  const { notesState, dispatch } = useContext(NotesContext);
   const [editedNote, setEditedNote] = useState(currentlyEditingNote);
 
-  const handleNoteChange = (e) => {
-    setEditedNote({ ...editedNote, [e.target.name]: e.target.value });
+  const handleTitleChange = (e) => {
+    dispatch({ type: "SET_NOTE_TITLE_VALUE", payload: e.target.value });
+  };
+
+  const handleDescriptionChange = (e) => {
+    dispatch({ type: "SET_NOTE_DESCRIPTION_VALUE", payload: e.target.value });
+  };
+
+  const toggleEditNoteModal = () => {
+    dispatch({ type: "TOGGLE_EDIT_NOTE_MODAL" });
   };
 
   const handleNoteUpdate = (e) => {
     e.preventDefault();
 
-    const updatedNotes = notes.map((note) =>
-      note.id === editedNote.id ? editedNote : note
-    );
+    dispatch({ type: "SET_UPDATED_NOTE" });
 
-    setNotes(updatedNotes);
     toggleEditNoteModal();
   };
 
@@ -59,8 +61,8 @@ const EditNote = ({
               name="title"
               maxLength={30}
               placeholder="Enter your note title."
-              value={editedNote.title}
-              onChange={handleNoteChange}
+              value={notesState.noteTitleValue}
+              onChange={handleTitleChange}
               className={`border border-gray-200 p-2 rounded-md outline-none focus:outline-none focus:ring-1 focus:ring-${themesState.currentTheme}-500`}
             />
           </div>
@@ -73,8 +75,8 @@ const EditNote = ({
               name="description"
               maxLength={100}
               placeholder="Enter your note Description."
-              value={editedNote.description}
-              onChange={handleNoteChange}
+              value={notesState.noteDescriptionValue}
+              onChange={handleDescriptionChange}
               className={`border border-gray-200 p-2 rounded-md outline-none focus:outline-none focus:ring-1 focus:ring-${themesState.currentTheme}-500`}
             />
           </div>

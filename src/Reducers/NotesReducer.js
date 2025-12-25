@@ -1,3 +1,5 @@
+import { MdDescription } from "react-icons/md";
+
 export const NotesReducer = (
   state,
   { type, payload } = { type: "", payload: () => {} }
@@ -11,10 +13,27 @@ export const NotesReducer = (
       return { ...state, notes: [...state.notes, payload] };
     case "TOGGLE_ADD_NOTE_MODAL":
       return { ...state, toggleAddNoteModal: !state.toggleAddNoteModal };
+    case "TOGGLE_EDIT_NOTE_MODAL":
+      return { ...state, toggleEditNoteModal: !state.toggleEditNoteModal };
     case "DELETE_NOTE":
       return {
         ...state,
         notes: state.notes.filter((note) => note.id !== payload),
+      };
+    case "SET_NOTE_TO_BE_UPDATED_ID":
+      return { ...state, noteToBeUpdatedId: payload };
+    case "SET_UPDATED_NOTE":
+      return {
+        ...state,
+        notes: state.notes.map((note) => {
+          if (note.id === state.noteToBeUpdatedId)
+            return {
+              ...note,
+              title: state.noteTitleValue,
+              description: state.noteDescriptionValue,
+            };
+          return note;
+        }),
       };
   }
 };
