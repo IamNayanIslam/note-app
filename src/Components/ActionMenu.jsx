@@ -4,10 +4,15 @@ import { FaSearch } from "react-icons/fa";
 import { IoIosColorPalette } from "react-icons/io";
 import { useContext } from "react";
 import { ThemesContext } from "../Contexts/ThemesContext";
+import { NotesContext } from "../Contexts/NotesContext";
 
-const ActionMenu = ({ toggleAddNoteModal, searchQuery, setSearchQuery }) => {
+const ActionMenu = ({ searchQuery, setSearchQuery }) => {
   const { themesState, dispatch } = useContext(ThemesContext);
+  const { notesState, dispatch: notesDispatch } = useContext(NotesContext);
 
+  const toggleAddNoteModal = () => {
+    notesDispatch({ type: "TOGGLE_ADD_NOTE_MODAL" });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -61,9 +66,10 @@ const ActionMenu = ({ toggleAddNoteModal, searchQuery, setSearchQuery }) => {
             <FaFilter className="h-5 w-5" />
           </button>
           <button
+            onClick={toggleAddNoteModal}
             className={`bg-${themesState.currentTheme}-500 p-3 rounded-full text-white shadow-md hover:bg-${themesState.currentTheme}-600 transition duration-300 active:scale-95 cursor-pointer`}
           >
-            <RiAddBoxLine className="h-5 w-5" onClick={toggleAddNoteModal} />
+            <RiAddBoxLine className="h-5 w-5" />
           </button>
 
           <div className="relative" onClick={stopPropagationTheme}>

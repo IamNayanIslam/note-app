@@ -1,24 +1,48 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
 import { ThemesContext } from "../Contexts/ThemesContext";
+import { NotesContext } from "../Contexts/NotesContext";
 
-const AddNote = ({ toggleAddNoteModal, notes, setNotes }) => {
+const AddNote = ({ notes, setNotes }) => {
   const { themesState } = useContext(ThemesContext);
-  const [newNote, setNewNote] = useState({
-    id: uuidv4(),
-    title: "",
-    description: "",
-  });
+  const { notesState, dispatch } = useContext(NotesContext);
 
-  const handleChange = (e) => {
-    setNewNote({ ...newNote, [e.target.name]: e.target.value });
+  const toggleAddNoteModal = () => {
+    dispatch({ type: "TOGGLE_ADD_NOTE_MODAL" });
   };
 
-  const handleAddNote = () => {
-    setNotes([...notes, newNote]);
-    toggleAddNoteModal();
-    console.log(notes);
+  const handleTitleChange = (e) => {
+    dispatch({ type: "SET_NOTE_TITLE_VALUE", payload: e.target.value });
+  };
+
+  const handleDescriptionChange = (e) => {
+    dispatch({ type: "SET_NOTE_DESCRIPTION_VALUE", payload: e.target.value });
+  };
+
+  const handleAddNote = (e) => {
+    e.preventDefault();
+    const newNote = {
+      title: notesState.noteTitleValue,
+      description: notesState.noteDescriptionValue,
+      creationTime: new Date().toLocaleString(),
+      isComplete: false,
+      id: Date.now(),
+    };
+
+    if (
+      newNote.title.trim().length === 0 ||
+      newNote.description.trim().length === 0
+    ) {
+      alert("Please enter a valid task!!!");
+      dispatch({ type: "SET_NOTE_TITLE_VALUE", payload: "" });
+      dispatch({ type: "SET_NOTE_DESCRIPTION_VALUE", payload: "" });
+    }
+
+    dispatch({ type: "SET_NEW_NOTE", payload: newNote });
+    dispatch({ type: "SET_NOTE_TITLE_VALUE", payload: "" });
+    dispatch({ type: "SET_NOTE_DESCRIPTION_VALUE", payload: "" });
+    dispatch({ type: "TOGGLE_ADD_NOTE_MODAL" });
   };
 
   const handleFormClick = (e) => {
@@ -50,10 +74,10 @@ const AddNote = ({ toggleAddNoteModal, notes, setNotes }) => {
             <input
               type="text"
               name="title"
-              maxlength={30}
+              maxLength={30}
               placeholder="Enter your note title."
-              value={newNote.title}
-              onChange={handleChange}
+              value={notesState.noteTitleValue}
+              onChange={handleTitleChange}
               className={`border border-gray-200 p-2 rounded-md outline-none focus:outline-none focus:ring-1 focus:ring-${themesState.currentTheme}-500`}
             />
           </div>
@@ -66,8 +90,8 @@ const AddNote = ({ toggleAddNoteModal, notes, setNotes }) => {
               name="description"
               maxlength={100}
               placeholder="Enter your note Description."
-              value={newNote.description}
-              onChange={handleChange}
+              value={notesState.noteDescriptionValue}
+              onChange={handleDescriptionChange}
               className={`border border-gray-200 p-2 rounded-md outline-none focus:outline-none focus:ring-1 focus:ring-${themesState.currentTheme}-500`}
             />
           </div>

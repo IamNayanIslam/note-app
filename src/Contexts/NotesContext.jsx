@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import { NotesReducer } from "../Reducers/NotesReducer";
 
 export const NotesContext = createContext({
   notesState: {},
@@ -11,6 +12,8 @@ const INITIAL_NOTES_STATE = {
   noteDescriptionValue: "",
   noteToBeUpdatedId: 0,
   isUpdating: false,
+  toggleAddNoteModal: false,
+  toggleEditNoteModal: false,
 };
 
 export const NotesContextProvider = ({ children }) => {

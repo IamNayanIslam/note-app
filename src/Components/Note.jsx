@@ -2,9 +2,15 @@ import { useContext } from "react";
 import { RiEditBoxLine } from "react-icons/ri";
 import { RxCrossCircled } from "react-icons/rx";
 import { ThemesContext } from "../Contexts/ThemesContext";
+import { NotesContext } from "../Contexts/NotesContext";
 
-const Note = ({ note, startNoteEditing, handleDeleteNote }) => {
+const Note = ({ note, startNoteEditing }) => {
   const { themesState } = useContext(ThemesContext);
+  const { notesState, dispatch } = useContext(NotesContext);
+
+  const handleDeleteNote = (id) => {
+    dispatch({ type: "DELETE_NOTE", payload: id });
+  };
   return (
     <div className="w-full md:w-[250px]">
       <div
