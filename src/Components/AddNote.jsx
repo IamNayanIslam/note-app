@@ -24,8 +24,7 @@ const AddNote = () => {
     const newNote = {
       title: notesState.noteTitleValue,
       description: notesState.noteDescriptionValue,
-      creationTime: new Date().toLocaleString(),
-      isComplete: false,
+      creationTime: new Date(),
       id: Date.now(),
     };
 

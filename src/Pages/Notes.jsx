@@ -5,6 +5,7 @@ import AddNote from "../Components/AddNote";
 import EditNote from "../Components/EditNote";
 import { useContext } from "react";
 import { NotesContext } from "../Contexts/NotesContext";
+import NoNotes from "../Components/NoNotes";
 
 const Notes = () => {
   const { notesState } = useContext(NotesContext);
@@ -19,6 +20,7 @@ const Notes = () => {
         ))}
       </div>
 
+      {notesState.notes.length === 0 && <NoNotes />}
       {notesState.toggleAddNoteModal && <AddNote />}
       {notesState.toggleEditNoteModal && <EditNote />}
     </div>

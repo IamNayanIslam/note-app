@@ -8,7 +8,7 @@ import { NotesContext } from "../Contexts/NotesContext";
 
 const ActionMenu = ({ searchQuery, setSearchQuery }) => {
   const { themesState, dispatch } = useContext(ThemesContext);
-  const { notesState, dispatch: notesDispatch } = useContext(NotesContext);
+  const { dispatch: notesDispatch } = useContext(NotesContext);
 
   const toggleAddNoteModal = () => {
     notesDispatch({ type: "TOGGLE_ADD_NOTE_MODAL" });

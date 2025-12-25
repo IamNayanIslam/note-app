@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { ThemesContext } from "../Contexts/ThemesContext";
 import { NotesContext } from "../Contexts/NotesContext";
 
-const EditNote = ({ currentlyEditingNote, notes, setNotes }) => {
+const EditNote = () => {
   const { themesState } = useContext(ThemesContext);
   const { notesState, dispatch } = useContext(NotesContext);
 

@@ -5,7 +5,7 @@ import AddNote from "./Components/AddNote";
 import { NotesContext } from "./Contexts/NotesContext";
 
 function App() {
-  const { themesState, dispatch } = useContext(ThemesContext);
+  const { dispatch } = useContext(ThemesContext);
   const { notesState } = useContext(NotesContext);
   const closeThemePalate = () => {
     dispatch({ type: "SET_IS_OPEN_CLOSE" });
