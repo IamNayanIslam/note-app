@@ -6,10 +6,13 @@ import { useContext } from "react";
 import { ThemesContext } from "../Contexts/ThemesContext";
 import { NotesContext } from "../Contexts/NotesContext";
 
-const ActionMenu = ({ searchQuery, setSearchQuery }) => {
+const ActionMenu = () => {
   const { themesState, dispatch } = useContext(ThemesContext);
-  const { dispatch: notesDispatch } = useContext(NotesContext);
+  const { notesState, dispatch: notesDispatch } = useContext(NotesContext);
 
+  const handleQuery = (e) => {
+    notesDispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value });
+  };
   const toggleAddNoteModal = () => {
     notesDispatch({ type: "TOGGLE_ADD_NOTE_MODAL" });
   };
@@ -45,8 +48,8 @@ const ActionMenu = ({ searchQuery, setSearchQuery }) => {
               type="text"
               placeholder="Search your note here."
               maxLength={30}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              value={notesState.searchQuery}
+              onChange={handleQuery}
               required
               className="flex-1 px-4 py-2 bg-transparent rounded-full focus:outline-none placeholder-gray-500"
             />

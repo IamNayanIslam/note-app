@@ -35,6 +35,7 @@ const AddNote = () => {
       alert("Please enter a valid note!!!");
       dispatch({ type: "SET_NOTE_TITLE_VALUE", payload: "" });
       dispatch({ type: "SET_NOTE_DESCRIPTION_VALUE", payload: "" });
+      return;
     }
 
     dispatch({ type: "SET_NEW_NOTE", payload: newNote });

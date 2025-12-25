@@ -13,6 +13,7 @@ const INITIAL_NOTES_STATE = {
   noteToBeUpdatedId: 0,
   toggleAddNoteModal: false,
   toggleEditNoteModal: false,
+  searchQuery: "",
 };
 
 export const NotesContextProvider = ({ children }) => {

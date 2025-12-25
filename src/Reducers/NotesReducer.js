@@ -35,5 +35,10 @@ export const NotesReducer = (
           return note;
         }),
       };
+    case "SET_SEARCH_QUERY":
+      return {
+        ...state,
+        searchQuery: payload,
+      };
   }
 };
