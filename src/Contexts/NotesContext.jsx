@@ -11,7 +11,6 @@ const INITIAL_NOTES_STATE = {
   noteTitleValue: "",
   noteDescriptionValue: "",
   noteToBeUpdatedId: 0,
-  isUpdating: false,
   toggleAddNoteModal: false,
   toggleEditNoteModal: false,
 };

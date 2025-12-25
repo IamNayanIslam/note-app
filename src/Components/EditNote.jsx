@@ -6,7 +6,6 @@ import { NotesContext } from "../Contexts/NotesContext";
 const EditNote = ({ currentlyEditingNote, notes, setNotes }) => {
   const { themesState } = useContext(ThemesContext);
   const { notesState, dispatch } = useContext(NotesContext);
-  const [editedNote, setEditedNote] = useState(currentlyEditingNote);
 
   const handleTitleChange = (e) => {
     dispatch({ type: "SET_NOTE_TITLE_VALUE", payload: e.target.value });
@@ -23,7 +22,18 @@ const EditNote = ({ currentlyEditingNote, notes, setNotes }) => {
   const handleNoteUpdate = (e) => {
     e.preventDefault();
 
+    if (
+      notesState.noteTitleValue.trim().length === 0 ||
+      notesState.noteDescriptionValue.trim().length === 0
+    ) {
+      alert("Please enter a valid note!!!");
+      toggleEditNoteModal();
+      return;
+    }
+
     dispatch({ type: "SET_UPDATED_NOTE" });
+    dispatch({ type: "SET_NOTE_TITLE_VALUE", payload: "" });
+    dispatch({ type: "SET_NOTE_DESCRIPTION_VALUE", payload: "" });
 
     toggleEditNoteModal();
   };

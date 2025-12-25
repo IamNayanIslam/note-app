@@ -1,10 +1,9 @@
 import { useContext } from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import { v4 as uuidv4 } from "uuid";
 import { ThemesContext } from "../Contexts/ThemesContext";
 import { NotesContext } from "../Contexts/NotesContext";
 
-const AddNote = ({ notes, setNotes }) => {
+const AddNote = () => {
   const { themesState } = useContext(ThemesContext);
   const { notesState, dispatch } = useContext(NotesContext);
 
@@ -34,7 +33,7 @@ const AddNote = ({ notes, setNotes }) => {
       newNote.title.trim().length === 0 ||
       newNote.description.trim().length === 0
     ) {
-      alert("Please enter a valid task!!!");
+      alert("Please enter a valid note!!!");
       dispatch({ type: "SET_NOTE_TITLE_VALUE", payload: "" });
       dispatch({ type: "SET_NOTE_DESCRIPTION_VALUE", payload: "" });
     }
@@ -48,6 +47,7 @@ const AddNote = ({ notes, setNotes }) => {
   const handleFormClick = (e) => {
     e.stopPropagation();
   };
+
   return (
     <div>
       <div
