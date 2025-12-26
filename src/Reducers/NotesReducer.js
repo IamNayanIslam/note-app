@@ -34,6 +34,7 @@ export const NotesReducer = (
             };
           return note;
         }),
+        noteToBeUpdatedId: 0,
       };
     case "SET_SEARCH_QUERY":
       return {
